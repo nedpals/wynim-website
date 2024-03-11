@@ -16,7 +16,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <header className="px-2 py-8">
+          <nav className="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="#" className="text-2xl">WYNIM PH</a>
+            
+            <ul className="flex items-center space-x-4">
+              <li>
+                <a href="/">Home</a>
+              </li>
+              <li>
+                <a href="/about">About</a>
+              </li>
+            </ul>
+          </nav>
+        </header>
+        
+        {children}
+      </body>
     </html>
   );
 }
