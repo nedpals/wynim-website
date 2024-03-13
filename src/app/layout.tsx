@@ -17,22 +17,28 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <header className="px-2 py-8">
+        <header className="px-3 py-8 bg-white">
           <nav className="max-w-7xl mx-auto flex items-center justify-between">
             <a href="#" className="text-2xl">WYNIM PH</a>
             
-            <ul className="flex items-center space-x-4">
+            <ul className="flex items-center space-x-8">
               <li>
-                <a href="/">Home</a>
+                <a href="/" className="hover:underline underline-offset-2">Home</a>
               </li>
               <li>
-                <a href="/about">About</a>
+                <a href="/about" className="hover:underline underline-offset-2">About</a>
               </li>
             </ul>
           </nav>
         </header>
         
         {children}
+
+        <footer className="bg-primary-500 text-white mt-8">
+          <div className="content-wrapper py-4">
+            <p>&copy; 2024 WYNIM Educational Consulting</p>
+          </div>
+        </footer>
       </body>
     </html>
   );
