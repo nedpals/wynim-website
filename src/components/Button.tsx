@@ -6,7 +6,9 @@ const button = cva("px-8 py-3 font-semibold rounded-full flex items-center space
         variant: {
             primary: "bg-primary-500 hover:bg-primary-600 text-white",
             secondary: "bg-secondary-500 hover:bg-secondary-600 text-slate-500",
-        }
+            'primary-text': "text-primary-500 hover:bg-primary-500/20",
+            'secondary-text': "text-secondary-500 hover:bg-secondary-500/20",
+        },
     },
     defaultVariants: {
         variant: "primary",

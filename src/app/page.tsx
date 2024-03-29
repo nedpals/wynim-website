@@ -11,7 +11,7 @@ export default function Home() {
             <p className="text-white/75 text-xl mt-4">Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui Lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat.</p>
             <div className="flex items-center space-x-4 mt-12 text-lg">
               <Button variant="secondary">Get Started</Button>
-              <button className="hover:bg-secondary-500/20 text-secondary-500 px-8 py-3 font-semibold rounded-full">Learn More</button>
+              <Button variant="secondary-text">Learn More</Button>
             </div>
           </div>
         </div>
