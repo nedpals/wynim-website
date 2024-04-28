@@ -7,6 +7,8 @@
  * @package wynim-website
  */
 
+require_once dirname(get_template_directory()) . '/vendor/autoload.php';
+
 if ( ! defined( 'WYNIM_WEBSITE_VERSION' ) ) {
 	/*
 	 * Set the theme’s version number.
@@ -80,8 +82,8 @@ if ( ! function_exists( 'wynim_website_setup' ) ) :
 		// This theme uses wp_nav_menu() in two locations.
 		register_nav_menus(
 			array(
-				'menu-1' => __( 'Primary', 'wynim-website' ),
-				'menu-2' => __( 'Footer Menu', 'wynim-website' ),
+				'header-menu' => __( 'Primary', 'wynim-website' ),
+				'footer-menu' => __( 'Footer Menu', 'wynim-website' ),
 			)
 		);
 
@@ -117,6 +119,14 @@ if ( ! function_exists( 'wynim_website_setup' ) ) :
 
 		// Remove support for block templates.
 		remove_theme_support( 'block-templates' );
+
+		// Add support for custom logo
+		add_theme_support( 'custom-logo' , [
+			'height'      => 42,
+			'width'       => 150,
+			'flex-height' => true,
+			'flex-width'  => true,
+		]);
 	}
 endif;
 add_action( 'after_setup_theme', 'wynim_website_setup' );
@@ -130,11 +140,11 @@ function wynim_website_widgets_init() {
 	register_sidebar(
 		array(
 			'name'          => __( 'Footer', 'wynim-website' ),
-			'id'            => 'sidebar-1',
+			'id'            => 'footer-sidebar',
 			'description'   => __( 'Add widgets here to appear in your footer.', 'wynim-website' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'before_widget' => '<section id="%1$s" class="w-full md:flex-1 widget %2$s">',
 			'after_widget'  => '</section>',
-			'before_title'  => '<h2 class="widget-title">',
+			'before_title'  => '<h2 class="widget-title text-lg font-bold mb-4">',
 			'after_title'   => '</h2>',
 		)
 	);
@@ -214,3 +224,8 @@ require get_template_directory() . '/inc/template-tags.php';
  * Functions which enhance the theme by hooking into WordPress.
  */
 require get_template_directory() . '/inc/template-functions.php';
+
+/**
+ * Theme-specific shortcodes.
+ */
+require get_template_directory() . '/inc/shortcodes.php';

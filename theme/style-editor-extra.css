@@ -11,8 +11,10 @@
  * the block editor.
  */
 
-.entry-header,
-.entry-content {
-  padding-left: 2rem;
-  padding-right: 2rem
-}
+/*.entry-header,*/
+
+/*.entry-content {*/
+
+/*	@apply px-8;*/
+
+/*}*/

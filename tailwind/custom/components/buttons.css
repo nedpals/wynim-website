@@ -1,0 +1,32 @@
+/**
+ * Buttons
+ *
+ * These styles are applied to all buttons on the frontend and in the block editor.
+ */
+.button {
+	@apply px-8 py-3 font-semibold rounded-full flex items-center space-x-3 transition-colors;
+}
+
+.button.is-primary {
+	@apply bg-primary-500 hover:bg-primary-600 text-white;
+}
+
+.button.is-secondary {
+	@apply bg-secondary-500 hover:bg-secondary-600 text-slate-500;
+}
+
+.button.is-tertiary {
+	@apply bg-tertiary-500 hover:bg-tertiary-600 text-white;
+}
+
+.button.is-primary.is-text {
+	@apply bg-transparent text-primary-500 hover:bg-primary-500/20;
+}
+
+.button.is-secondary.is-text {
+	@apply bg-transparent text-secondary-500 hover:bg-secondary-500/20;
+}
+
+.button.is-tertiary.is-text {
+	@apply bg-transparent text-tertiary-500 hover:bg-tertiary-500/20;
+}

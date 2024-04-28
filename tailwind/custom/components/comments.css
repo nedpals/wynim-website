@@ -1,0 +1,67 @@
+/**
+ * Custom styles for page content
+ */
+
+.page #comments {
+	@apply max-w-wide mx-auto w-full;
+}
+
+.comment-respond h3 {
+	@apply text-2xl font-semibold;
+}
+
+.comment-respond .comment-form-comment {
+	@apply mt-4 flex flex-col;
+}
+
+.comment-respond textarea {
+	@apply py-4 border-b-2 focus:outline-none focus:border-primary-500 focus:bg-slate-50/40 transition-colors;
+}
+
+.comment-respond .comment-form .form-submit {
+	@apply mt-4;
+}
+
+.comment-respond .comment-form .form-submit input[type="submit"] {
+	@apply px-6 py-3 bg-primary-500 text-white rounded-full hover:bg-primary-600 transition-colors;
+}
+
+#comments ol {
+	@apply space-y-4 my-8;
+}
+
+#comments ol li article {
+	@apply border rounded p-4 bg-white shadow flex flex-col;
+}
+
+#comments article .comment-meta {
+	@apply flex flex-col md:flex-row md:justify-between md:items-center;
+}
+
+#comments article .comment-author {
+	@apply flex items-center space-x-2 mb-2;
+}
+
+#comments article .comment-author .avatar {
+	@apply rounded-full;
+}
+
+#comments article .comment-metadata {
+	@apply text-sm text-slate-500 space-x-2;
+}
+
+#comments article .comment-metadata .comment-edit-link {
+	@apply text-primary-500 hover:text-primary-600;
+}
+
+#comments article .comment-content {
+	@apply mt-2 mb-4 text-lg;
+}
+
+#comments article .reply {
+	@apply self-end;
+}
+
+#comments article .reply a {
+	@apply transition-colors text-primary-500 hover:text-primary-600 px-3 py-2 rounded-md hover:bg-primary-50;
+}

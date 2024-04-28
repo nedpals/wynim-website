@@ -1,0 +1,21 @@
+/**
+ * Input
+ */
+
+.input-field-wrapper {
+	@apply flex flex-col space-y-2 p-4;
+}
+
+.input-field-wrapper.is-horizontal {
+	@apply flex-row space-x-4;
+}
+
+.input-field-wrapper label,
+.input-field-wrapper .label {
+	@apply text-sm font-semibold text-slate-500;
+}
+
+input.input-field,
+textarea.input-field {
+	@apply px-3 py-2 border-t border-x border-b-2 rounded focus:outline-none focus:border-primary-500 focus:bg-slate-50/40 transition-colors;
+}

@@ -1,0 +1,11 @@
+.footer-sidebar .wp-block-heading {
+	@apply text-lg font-bold mb-4;
+}
+
+.footer-sidebar .widget .menu {
+	@apply space-y-2;
+}
+
+.footer-sidebar .widget .menu li a {
+	@apply text-white/85 hover:text-white hover:underline;
+}

@@ -26,7 +26,7 @@
 
 	<?php wynim_website_post_thumbnail(); ?>
 
-	<div <?php wynim_website_content_class( 'entry-content' ); ?>>
+	<div <?php wynim_website_content_class( 'entry-content ' ); ?>>
 		<?php
 		the_content();
 

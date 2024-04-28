@@ -55,7 +55,9 @@
 	},
 	"prettier": "@wordpress/prettier-config",
 	"dependencies": {
+		"@alpinejs/collapse": "^3.13.10",
 		"@types/jquery": "^3.5.29",
+		"alpinejs": "^3.13.10",
 		"jquery": "^3.7.1"
 	}
 }

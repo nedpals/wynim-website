@@ -19,12 +19,11 @@ if ( post_password_required() ) {
 }
 ?>
 
-<div id="comments">
-
+<div id="comments" class="mt-8 px-2">
 	<?php
 	if ( have_comments() ) :
 		?>
-		<h2>
+		<h2 class="text-2xl font-bold">
 			<?php
 			$wynim_website_comment_count = get_comments_number();
 			if ( '1' === $wynim_website_comment_count ) {

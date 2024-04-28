@@ -22,6 +22,11 @@
 	@apply mx-auto mb-6 text-3xl font-extrabold text-slate-900;
 }
 
+.page-title a,
+.entry-title a {
+	@apply hover:text-primary-500;
+}
+
 /**
  * Layout styles for centered content areas
  *
@@ -35,7 +40,7 @@
 .page-content > *,
 .entry-content > * {
 	/* Content width from the `theme.json` file */
-	@apply max-w-content mx-auto;
+	/*@apply max-w-content mx-auto;*/
 }
 
 .entry-content > .alignwide {
@@ -56,26 +61,19 @@
 }
 
 /**
- * Buttons
- *
- * These styles are applied to all buttons on the frontend and in the block editor.
+ * Header-specific styles
  */
-.button {
-	@apply px-8 py-3 font-semibold rounded-full flex items-center space-x-3 transition-colors;
+.custom-logo {
+	@apply max-w-full h-auto;
 }
 
-.button.is-primary {
-	@apply bg-primary-500 hover:bg-primary-600 text-white;
+/**
+ *
+ */
+.posts-list {
+	@apply divide-y;
 }
 
-.button.is-secondary {
-	@apply bg-secondary-500 hover:bg-secondary-600 text-slate-500;
-}
-
-.button.is-primary.is-text {
-	@apply bg-transparent text-primary-500 hover:bg-primary-500/20;
-}
-
-.button.is-secondary.is-text {
-	@apply bg-transparent text-secondary-500 hover:bg-secondary-500/20;
+.posts-list .post {
+	@apply py-8;
 }
