@@ -10,9 +10,8 @@
 get_header();
 ?>
 
-	<section id="primary">
-		<main id="main">
-
+	<section id="primary" class="max-w-wide mx-auto px-2 lg:px-0 flex py-8">
+		<main id="main" class="w-full lg:w-2/3">
 			<?php
 			/* Start the Loop */
 			while ( have_posts() ) :
@@ -44,6 +43,12 @@ get_header();
 			?>
 
 		</main><!-- #main -->
+
+		<aside class="hidden lg:block lg:w-1/3 lg:pl-8">
+			<?php if ( is_active_sidebar( 'single-post-sidebar' ) ) : ?>
+				<?php dynamic_sidebar( 'single-post-sidebar' ); ?>
+			<?php endif; ?>
+		</aside><!-- #secondary -->
 	</section><!-- #primary -->
 
 <?php

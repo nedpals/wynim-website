@@ -40,8 +40,9 @@ if ( ! function_exists( 'wynim_website_posted_by' ) ) :
 	function wynim_website_posted_by() {
 		printf(
 		/* translators: 1: posted by label, only visible to screen readers. 2: author link. 3: post author. */
-			'<span class="sr-only">%1$s</span><span class="author vcard"><a class="url fn n" href="%2$s">%3$s</a></span>',
+			'<span class="sr-only">%1$s</span><span class="pr-4">%2$s</span><span class="author vcard"><a class="url fn n font-semibold" href="%3$s">%4$s</a></span>',
 			esc_html__( 'Posted by', 'wynim-website' ),
+			esc_html__( 'by', 'wynim-website' ),
 			esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
 			esc_html( get_the_author() )
 		);
@@ -130,13 +131,6 @@ if ( ! function_exists( 'wynim_website_entry_footer' ) ) :
 
 		// Hide author, post date, category and tag text for pages.
 		if ( 'post' === get_post_type() ) {
-
-			// Posted by.
-			wynim_website_posted_by();
-
-			// Posted on.
-			wynim_website_posted_on();
-
 			/* translators: used between list items, there is a space after the comma. */
 			$categories_list = get_the_category_list( __( ', ', 'wynim-website' ) );
 			if ( $categories_list ) {

@@ -11,12 +11,12 @@
 
 $args = wp_parse_args($args,
 	[
-		'content_class' => '!max-w-content w-full mx-auto px-2 mt-8',
+		'content_class' => '',
 	]
 );
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class('pb-24'); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class(''); ?>>
 
 	<header class="entry-header">
 		<div class="max-w-wide mx-auto py-8 px-2">
@@ -32,7 +32,7 @@ $args = wp_parse_args($args,
 
 	<?php wynim_website_post_thumbnail(); ?>
 
-	<div <?php wynim_website_content_class( 'entry-content ' . $args['content_class'] ); ?>>
+	<div <?php wynim_website_content_class( 'entry-content px-2 mt-8' ); ?>>
 		<?php
 		the_content();
 

@@ -75,17 +75,33 @@
 		<div class="px-3 md:px-0 w-full text-center pb-12 space-y-8 flex flex-col items-center">
 			<h2 class="text-4xl font-extrabold">Browse Programs & Universities</h2>
 
-			<?php get_template_part('template-parts/layout/search-form', args: ['css_class' => 'w-full md:w-3/4 lg:w-2/3']); ?>
+			<?php get_template_part('template-parts/layout/finder-search-form', args: ['css_class' => 'w-full md:w-3/4 lg:w-2/3']); ?>
 		</div>
 
+		<?php $programs = get_terms([
+			'taxonomy' => 'course_offered',
+			'post_type' => 'school',
+			'hide_empty' => false,
+			'orderby' => 'count',
+			'order' => 'DESC',
+			'number' => 3,
+		]); ?>
 		<div class="flex items-top px-3 -mx-3">
-			<?php for ($i = 0; $i < 3; $i++) { ?>
-				<a href="#" class="w-1/3 p-3 flex flex-col shadow-none rounded-xl bg-transparent border-0 hover: hover:border hover:bg-white hover:shadow-lg hover:scale-[1.03] transition-all">
-					<div class="h-48 w-full bg-slate-400 rounded-lg"></div>
+			<?php foreach ($programs as $program) { ?>
+				<a href="<?php echo get_permalink(get_page_by_path('finder')) ?>?programs=<?php echo $program->term_id ?>" class="w-1/3 p-3 flex flex-col shadow-none rounded-xl bg-transparent border-0 hover: hover:border hover:bg-white hover:shadow-lg hover:scale-[1.03] transition-all">
+					<div style="background-image: url(<?php echo wp_get_attachment_image_url(get_term_meta($program->term_id, 'featured_image', true), 'large') ?>);"
+						 class="h-48 w-full rounded-lg bg-center bg-cover bg-no-repeat"></div>
 					<div class="w-full pt-4 flex items-center">
 						<div class="flex-1 pr-4">
-							<p class="font-semibold">Computer Science</p>
-							<p class="text-slate-500/75">Offered by 3 universities</p>
+							<p class="font-semibold"><?php echo $program->name ?></p>
+
+							<p class="text-slate-500/75">
+								<?php if ($program->count) { ?>
+									Offered by <?php echo $program->count; ?> <?php echo $program->count > 1 ? "universities" : "university"  ?>
+								<?php } else { ?>
+									Find out more
+								<?php } ?>
+							</p>
 						</div>
 
 						<svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -137,27 +153,40 @@
 		</div>
 	</section>
 
-	<section class="py-24">
-		<div class="w-full text-center pb-12">
-			<h2 class="text-4xl font-extrabold">Frequently Asked Questions</h2>
-		</div>
+	<?php if (function_exists('pods')):
+		$faq_pod = pods('faq')->find(limit: 5);
+	?>
+		<section class="py-24 flex flex-col">
+			<div class="w-full text-center pb-12">
+				<h2 class="text-4xl font-extrabold">Frequently Asked Questions</h2>
+			</div>
 
-		<div class="max-w-2xl mx-auto w-full divide-y border-t-2">
-			<?php for ($i = 0; $i < 3; $i++) { ?>
-				<div class="faq-item hover:bg-slate-300/10 transition-colors pb-5 px-5">
-					<div class="pt-5 flex items-center justify-between cursor-pointer">
-						<span class="inline-block text-lg font-semibold">What’s the best thing about Switzerland?</span>
-						<svg class="rotate-180" width="16" height="9" viewBox="0 0 16 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M15 1L8 8L1 1" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-						</svg>
-					</div>
+			<div class="max-w-2xl mx-auto w-full divide-y border-t-2">
+				<?php while ($faq_pod->fetch()): ?>
+					<div class="faq-item hover:bg-slate-300/10 transition-colors pb-5 px-5">
+						<div class="pt-5 flex items-center justify-between cursor-pointer">
+							<span class="inline-block text-lg font-semibold"><?php echo $faq_pod->display('question') ?></span>
+							<svg class="rotate-180" width="16" height="9" viewBox="0 0 16 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M15 1L8 8L1 1" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+							</svg>
+						</div>
 
-					<div style="display: none;" class="pt-3">
-						<p class="text-slate-500/75">I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.</p>
+						<div style="display: none;" class="pt-3">
+<!--							<p class="text-slate-500/75"></p>-->
+							<?php echo $faq_pod->display('answer') ?>
+						</div>
 					</div>
-				</div>
-			<?php } ?>
-		</div>
-	</section>
+				<?php endwhile ?>
+			</div>
+
+			<a href="<?php echo get_permalink(get_page_by_path('faqs')) ?>" class="button is-secondary self-center mt-20">
+				<span>Find more answers to your questions</span>
+
+				<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+					<path fill="currentColor" d="M16.15 13H5q-.425 0-.712-.288T4 12t.288-.712T5 11h11.15L13.3 8.15q-.3-.3-.288-.7t.288-.7q.3-.3.713-.312t.712.287L19.3 11.3q.15.15.213.325t.062.375t-.062.375t-.213.325l-4.575 4.575q-.3.3-.712.288t-.713-.313q-.275-.3-.288-.7t.288-.7z"/>
+				</svg>
+			</a>
+		</section>
+	<?php endif; ?>
 
 </div>

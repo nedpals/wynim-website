@@ -43,9 +43,9 @@ function wynim_website_get_the_archive_title() {
 	} elseif ( is_author() ) {
 		$title = __( 'Author Archives: ', 'wynim-website' ) . '<span>' . get_the_author_meta( 'display_name' ) . '</span>';
 	} elseif ( is_year() ) {
-		$title = __( 'Yearly Archives: ', 'wynim-website' ) . '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'wynim-website' ) ) . '</span>';
+		$title = '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'wynim-website' ) ) . '</span>';
 	} elseif ( is_month() ) {
-		$title = __( 'Monthly Archives: ', 'wynim-website' ) . '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', 'wynim-website' ) ) . '</span>';
+		$title = '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', 'wynim-website' ) ) . '</span>';
 	} elseif ( is_day() ) {
 		$title = __( 'Daily Archives: ', 'wynim-website' ) . '<span>' . get_the_date() . '</span>';
 	} elseif ( is_post_type_archive() ) {
@@ -204,3 +204,16 @@ function wynim_website_html5_comment( $comment, $args, $depth ) {
 		</article><!-- .comment-body -->
 	<?php
 }
+
+/**
+ * Custom archive link for post categories.
+ */
+function wynim_website_get_archives_link( $link_html, $url, $text, $format, $before, $after, $selected ) {
+	if ( 'wynim_categories' === $format ) {
+		$url = esc_url( $url );
+		$text = wp_strip_all_tags( $text );
+		$link_html = "{$before}<a href='{$url}' class='hover:text-primary-600 border-b border-primary-600'>{$text}</a>{$after}";
+	}
+	return $link_html;
+}
+add_filter( 'get_archives_link', 'wynim_website_get_archives_link', 10, 7 );

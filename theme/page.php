@@ -15,7 +15,7 @@ get_header();
 ?>
 
 	<section id="primary">
-		<main id="main">
+		<main id="main" class="max-w-wide mx-auto pb-8">
 
 			<?php
 

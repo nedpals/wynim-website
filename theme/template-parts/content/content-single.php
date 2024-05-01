@@ -11,17 +11,41 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-	<header class="entry-header">
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+	<header class="entry-header pb-8">
+		<!-- catgegories list -->
+		<div class="entry-categories text-lg flex flex-wrap -mx-1 pb-2">
+			<?php $categories_list = get_the_category(get_the_ID()); ?>
 
-		<?php if ( ! is_page() ) : ?>
-			<div class="entry-meta">
-				<?php wynim_website_entry_meta(); ?>
-			</div><!-- .entry-meta -->
-		<?php endif; ?>
+			<?php if ( $categories_list ) : ?>
+				<?php foreach ( $categories_list as $category ) : ?>
+					<div class="p-1">
+						<a href="<?php echo esc_url( get_category_link( $category->term_id ) ); ?>"
+						   class="px-3 py-1 border border-tertiary-500 rounded hover:bg-tertiary-600 hover:text-white <?php echo $category->parent == 0 ? 'text-white bg-tertiary-500' : ' text-tertiary-500' ?>">
+							<?php echo esc_html( $category->name ); ?>
+						</a>
+					</div>
+				<?php endforeach; ?>
+			<?php endif; ?>
+		</div>
+
+		<?php the_title( '<h1 class="entry-title text-5xl mb-0">', '</h1>' ); ?>
+
+		<div class="entry-meta divide-x flex items-center mt-4 text-lg">
+			<div class="pr-4">
+				<?php wynim_website_posted_by(); ?>
+			</div>
+
+			<div class="text-gray-500 pl-4">
+				<?php wynim_website_posted_on(); ?>
+			</div>
+		</div><!-- .entry-meta -->
 	</header><!-- .entry-header -->
 
-	<?php wynim_website_post_thumbnail(); ?>
+	<?php if (wynim_website_can_show_post_thumbnail())	: ?>
+		<div class="entry-thumbnail mb-8">
+			<?php wynim_website_post_thumbnail(); ?>
+		</div>
+	<?php endif; ?>
 
 	<div <?php wynim_website_content_class( 'entry-content' ); ?>>
 		<?php

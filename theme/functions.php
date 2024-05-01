@@ -137,6 +137,7 @@ add_action( 'after_setup_theme', 'wynim_website_setup' );
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
 function wynim_website_widgets_init() {
+	// Footer widget area.
 	register_sidebar(
 		array(
 			'name'          => __( 'Footer', 'wynim-website' ),
@@ -145,6 +146,45 @@ function wynim_website_widgets_init() {
 			'before_widget' => '<section id="%1$s" class="w-full md:flex-1 widget %2$s">',
 			'after_widget'  => '</section>',
 			'before_title'  => '<h2 class="widget-title text-lg font-bold mb-4">',
+			'after_title'   => '</h2>',
+		)
+	);
+
+	// Sidebar for single posts.
+	register_sidebar(
+		array(
+			'name'          => __( 'Single Post Sidebar', 'wynim-website' ),
+			'id'            => 'single-post-sidebar',
+			'description'   => __( 'Add widgets here to appear in the sidebar of single posts.', 'wynim-website' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title text-lg font-bold mb-4">',
+			'after_title'   => '</h2>',
+		)
+	);
+
+	// Sidebar for categories/tag archives.
+	register_sidebar(
+		array(
+			'name'          => __( 'Category/Tag Archive Sidebar', 'wynim-website' ),
+			'id'            => 'category-tag-archive-sidebar',
+			'description'   => __( 'Add widgets here to appear in the sidebar of category and tag archives.', 'wynim-website' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s py-8">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title text-xl font-bold mb-4">',
+			'after_title'   => '</h2>',
+		)
+	);
+
+	// Sidebar for finder search results.
+	register_sidebar(
+		array(
+			'name'          => __( 'Finder Search Results Sidebar', 'wynim-website' ),
+			'id'            => 'finder-search-results-sidebar',
+			'description'   => __( 'Add widgets here to appear in the sidebar of finder search results.', 'wynim-website' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s py-8">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title text-xl font-bold mb-4">',
 			'after_title'   => '</h2>',
 		)
 	);
@@ -216,6 +256,20 @@ function wynim_website_tinymce_add_class( $settings ) {
 add_filter( 'tiny_mce_before_init', 'wynim_website_tinymce_add_class' );
 
 /**
+ * Add custom query variables for the finder search form.
+ * This allows us to use the `type` and `q` query variables in the search form.
+ *
+ * @param array $vars Array of query variables.
+ * @return array
+ */
+function wynim_website_query_vars($vars) {
+	$vars[] = 'q';
+	$vars[] = 'type';
+	return $vars;
+}
+add_filter('query_vars', 'wynim_website_query_vars');
+
+/**
  * Custom template tags for this theme.
  */
 require get_template_directory() . '/inc/template-tags.php';
@@ -229,3 +283,10 @@ require get_template_directory() . '/inc/template-functions.php';
  * Theme-specific shortcodes.
  */
 require get_template_directory() . '/inc/shortcodes.php';
+
+/**
+ * Pods Framework-specific modifications.
+ */
+if ( class_exists( 'Pods' ) ) {
+	require get_template_directory() . '/inc/pods-framework.php';
+}

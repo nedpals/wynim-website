@@ -14,6 +14,7 @@ import Alpine from 'alpinejs';
 import {collapse} from "@alpinejs/collapse";
 
 import jQuery from 'jquery';
+import { tns } from 'tiny-slider/src/tiny-slider';
 
 /**
  * Toggle a menu item

@@ -1,0 +1,55 @@
+# WordPress theme packager workflow
+name: Package WordPress Theme
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: composer install --no-dev
+
+      - name: Build theme
+        run: npm ci && npm run build
+
+      # Set the THEME_VERSION environment variable
+      # to the unix timestamp of the date it was built (e.g. 1640000000)
+      - name: Set theme version
+        run: echo "THEME_VERSION=$(date +%s)" >> $GITHUB_ENV
+
+      - name: Run package.py
+        env:
+          THEME_VERSION: ${{ env.THEME_VERSION }}
+          GH_USERNAME: ${{ github.event.repository.owner.login }}
+          GH_REPO: ${{ github.event.repository.name }}
+        run: python package.py
+
+      - name: Create release
+        id: create_release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Theme release
+          files: theme.zip
+          tag_name: release-${{ env.THEME_VERSION }}
+          draft: false
+          prerelease: false
+
+      - name: Get the URL of the created release
+        run: echo "The release is at ${{ steps.create_release.outputs.html_url }}"
