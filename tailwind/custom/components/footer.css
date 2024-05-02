@@ -1,4 +1,5 @@
-.footer-sidebar .wp-block-heading {
+.footer-sidebar .wp-block-heading,
+.footer-sidebar .widget .widgettitle {
 	@apply text-lg font-bold mb-4;
 }
 

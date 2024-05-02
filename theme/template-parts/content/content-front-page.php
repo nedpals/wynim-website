@@ -86,9 +86,9 @@
 			'order' => 'DESC',
 			'number' => 3,
 		]); ?>
-		<div class="flex items-top px-3 -mx-3">
+		<div class="flex flex-col md:flex-row items-stretch md:items-top px-3 -mx-3">
 			<?php foreach ($programs as $program) { ?>
-				<a href="<?php echo get_permalink(get_page_by_path('finder')) ?>?programs=<?php echo $program->term_id ?>" class="w-1/3 p-3 flex flex-col shadow-none rounded-xl bg-transparent border-0 hover: hover:border hover:bg-white hover:shadow-lg hover:scale-[1.03] transition-all">
+				<a href="<?php echo get_permalink(get_page_by_path('finder')) ?>?programs=<?php echo $program->term_id ?>" class="w-full md:w-1/3 p-3 flex flex-col shadow-none rounded-xl bg-transparent border-0 hover: hover:border hover:bg-white hover:shadow-lg hover:scale-[1.03] transition-all">
 					<div style="background-image: url(<?php echo wp_get_attachment_image_url(get_term_meta($program->term_id, 'featured_image', true), 'large') ?>);"
 						 class="h-48 w-full rounded-lg bg-center bg-cover bg-no-repeat"></div>
 					<div class="w-full pt-4 flex items-center">
@@ -105,7 +105,7 @@
 						</div>
 
 						<svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M1.33331 6.49998H12M12 6.49998L7.33331 1.83331M12 6.49998L7.33331 11.1666" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+							<path d="M1.33331 6.49998H12M12 6.49998L7.33331 1.83331M12 6.49998L7.33331 11.1666" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 						</svg>
 					</div>
 				</a>
@@ -126,8 +126,8 @@
 			<h2 class="text-4xl font-extrabold">Our Services</h2>
 		</div>
 
-		<div class="flex items-top px-4 -mx-4 mt-3">
-			<div class="w-1/3 p-4">
+		<div class="flex flex-col md:flex-row items-stretch md:items-top px-4 -mx-4 mt-3">
+			<div class="w-full md:w-1/3 p-4">
 				<div class="bg-gray-50 rounded-lg p-8 flex flex-col items-center text-center">
 					<div class="bg-primary-500 h-12 w-12 rounded shadow-lg mb-4 -mt-14"></div>
 					<h3 class="font-semibold text-lg mb-2 mt-6">Lorem Ipsum</h3>
@@ -135,7 +135,7 @@
 				</div>
 			</div>
 
-			<div class="w-1/3 p-4">
+			<div class="w-full md:w-1/3 p-4">
 				<div class="bg-gray-50 rounded-lg p-8 flex flex-col items-center text-center">
 					<div class="bg-primary-500 h-12 w-12 rounded shadow-lg mb-4 -mt-14"></div>
 					<h3 class="font-semibold text-lg mb-2 mt-6">Lorem Ipsum</h3>
@@ -143,7 +143,7 @@
 				</div>
 			</div>
 
-			<div class="w-1/3 p-4">
+			<div class="w-full md:w-1/3 p-4">
 				<div class="bg-gray-50 rounded-lg p-8 flex flex-col items-center text-center">
 					<div class="bg-primary-500 h-12 w-12 rounded shadow-lg mb-4 -mt-14"></div>
 					<h3 class="font-semibold text-lg mb-2 mt-6">Lorem Ipsum</h3>
@@ -156,7 +156,7 @@
 	<?php if (function_exists('pods')):
 		$faq_pod = pods('faq')->find(limit: 5);
 	?>
-		<section class="py-24 flex flex-col">
+		<section class="py-12 flex flex-col">
 			<div class="w-full text-center pb-12">
 				<h2 class="text-4xl font-extrabold">Frequently Asked Questions</h2>
 			</div>
@@ -189,4 +189,31 @@
 		</section>
 	<?php endif; ?>
 
+	<section class="py-20">
+		<?php $schoolImageFilenames = ['Tile.png', 'Tile-1.png', 'Tile-2.png', 'Tile-3.png', 'Tile-4.png', 'Tile-5.png']; ?>
+		<div class="w-full text-center pb-12">
+			<h2 class="text-4xl font-extrabold">Partner Schools</h2>
+		</div>
+
+		<div class="max-w-3xl mx-auto px-2 flex flex-wrap justify-center">
+			<?php foreach ($schoolImageFilenames as $imageFilename): ?>
+				<div>
+					<img src="<?php echo get_template_directory_uri(); ?>/assets/schools/<?php echo $imageFilename ?>" />
+				</div>
+			<?php endforeach; ?>
+		</div>
+
+	</section>
+
+	<div class="md:rounded-lg bg-gradient-to-b from-secondary-100 to-secondary-50 px-8 py-12 md:mb-24">
+		<div class="text-center flex flex-col items-center max-w-3xl mx-auto">
+			<h1 class="text-primary-500 text-5xl md:text-6xl font-extrabold mb-8">Ready to for the Future?</h1>
+			<p class="text-lg mb-8">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores commodi consequatur enim ex, exercitationem itaque iusto minima nostrum saepe sapiente?</p>
+
+			<div class="flex items-center space-x-4">
+				<button class="button is-tertiary">Get Started</button>
+				<button class="button is-tertiary is-text">Learn More</button>
+			</div>
+		</div>
+	</div>
 </div>

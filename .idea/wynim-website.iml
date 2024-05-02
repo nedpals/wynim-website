@@ -9,7 +9,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/eftec/bladeone" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/gettext/gettext" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/gettext/languages" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/log1x/navi" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/mck89/peast" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/mustache/mustache" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpcompatibility/php-compatibility" />
