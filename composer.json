@@ -18,8 +18,5 @@
 		"allow-plugins": {
 			"dealerdirect/phpcodesniffer-composer-installer": true
 		}
-	},
-	"require": {
-		"log1x/navi": "^3.0"
 	}
 }

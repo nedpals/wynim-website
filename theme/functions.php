@@ -7,7 +7,7 @@
  * @package wynim-website
  */
 
-require_once dirname(get_template_directory()) . '/vendor/autoload.php';
+require_once get_template_directory() . '/vendor/autoload.php';
 
 if ( ! defined( 'WYNIM_WEBSITE_VERSION' ) ) {
 	/*
